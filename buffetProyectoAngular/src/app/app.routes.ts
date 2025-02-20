@@ -16,6 +16,6 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'create', component: MenuCreationComponent, canActivate: [AdminGuard] },
     { path: 'list', component: ListMenusComponent, canActivate: [AdminGuard] },
-    { path: 'edit', component: EditMenuComponent, canActivate: [AdminGuard] },
+    { path: 'edit/:id', component: EditMenuComponent, canActivate: [AdminGuard] },
     { path: '**', redirectTo: '' }
 ];

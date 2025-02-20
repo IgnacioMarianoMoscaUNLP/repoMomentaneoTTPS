@@ -1,6 +1,7 @@
 <!-- navbar.component.html -->
 <nav>
   <button routerLinkActive="active" routerLink="/">Home</button>
+  
   <button *ngIf="!isLoggedIn()"  routerLink="login" >login</button>
   <button *ngIf="!isLoggedIn()"  routerLink="register" >registro</button>
   <button *ngIf="isLoggedIn() && isAdmin()"  routerLink="create">Create Menu</button>

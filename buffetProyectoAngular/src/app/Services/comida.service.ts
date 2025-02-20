@@ -20,7 +20,7 @@ export class ComidaService {
   }
 
   obtenerComidas():Observable<any>{
-    return this.http.get<ComidaDTO[]>(this.apiUrl);
+    return this.http.get<ComidaDTO[]>(`${this.apiUrl}/list`);
   }
 
   obtenerComidasMenu(comidaIds: number[]): Observable<ComidaDTO[]> {
@@ -29,13 +29,9 @@ export class ComidaService {
     console.log(comidaIds)
 
     
-    for (const id of comidaIds) {
-      //aca se hace la consulta en otro metodo pasandole el id de la comida a obtener
-      console.log("comida"+id)
-      solicitudes.push(this.consultaUnaComida(id));
-      console.log(solicitudes[0])
+    for (const id of comidaIds) {    
+      solicitudes.push(this.consultaUnaComida(id));      
     }
-
     //esto reseulve consultas en paralelo y las devuelve juntas en una lista
     return forkJoin(solicitudes);
   }

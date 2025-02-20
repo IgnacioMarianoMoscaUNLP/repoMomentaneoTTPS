@@ -4,5 +4,6 @@
     <p class="menu-foods"><strong>Comidas:</strong> 
         <span *ngFor="let comida of comidas" class="food-item"> -{{ comida.nombre }}</span>
     </p>    
-    <p class="menu-days"><strong>Día:</strong> {{ menu?.dias }}</p>
+    <p class="menu-days"><strong>Día:</strong> {{ menu?.dias }}</p>    
+    <button *ngIf="isAdmin()" [routerLink]="['edit', menu?.idmenu]">Editar Menú</button>
 </div>
