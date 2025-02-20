@@ -23,7 +23,7 @@ export interface conjuntoMenuComidas{
 export class ListMenusComponent {
 
   private Menus: MenuDTO[]  = [];
-  public lista?: conjuntoMenuComidas[];
+  public lista: conjuntoMenuComidas[] = [];
 
   constructor(private menuService:MenuService,private comidaService:ComidaService){}
 
@@ -58,7 +58,7 @@ export class ListMenusComponent {
         comidas => {
           
           c.comidas = comidas;
-          this.lista?.push(c);
+          this.lista.push(c);
         },
         error => {
           console.error('Error al cargar las comidas veganas:', error);
