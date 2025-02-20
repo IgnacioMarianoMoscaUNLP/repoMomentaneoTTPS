@@ -15,34 +15,42 @@
   
         <tr>
           <td>
-            <button type="submit" [disabled]="!menuForm.valid">Guardar</button>
+            <button type="submit" [disabled]="!menuForm.valid" *ngIf="showSaveButton">Guardar</button>
           </td>
           <td>
-            <input formControlName="nombre" placeholder="Nombre Menú" />
+            
+            <select formControlName="tipo" >
+              <option >
+                Vegano
+              </option>
+              <option >
+                No Vegano
+              </option>
+            </select>
           </td>
           <td>
-            <select formControlName="entrada" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+            <select formControlName="entrada">
               <option *ngFor="let comida of comidas" [value]="comida.id">
                 {{ comida.nombre }} ({{ comida.precio }})
               </option>
             </select>
           </td>
           <td>
-            <select formControlName="platoPrincipal" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+            <select formControlName="platoPrincipal" >
               <option *ngFor="let comida of comidas" [value]="comida.id">
                 {{ comida.nombre }} ({{ comida.precio }})
               </option>
             </select>
           </td>
           <td>
-            <select formControlName="postre" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+            <select formControlName="postre" >
               <option *ngFor="let comida of comidas" [value]="comida.id">
                 {{ comida.nombre }} ({{ comida.precio }})
               </option>
             </select>
           </td>
           <td>
-            <select formControlName="bebida" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+            <select formControlName="bebida">
               <option *ngFor="let comida of comidas" [value]="comida.id">
                 {{ comida.nombre }} ({{ comida.precio }})
               </option>
@@ -59,7 +67,7 @@
       </table>
   
       <div class="total">
-        <strong>Precio Total: {{ totalPrecio | currency }}</strong>
+        <strong>Precio Total: <input formControlName="precio"></strong>
       </div>
     </form>
   </div>
