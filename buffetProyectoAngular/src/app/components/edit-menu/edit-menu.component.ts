@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuDTO } from '../../interfaces/menu-dto';
 import { ComidaDTO } from '../../interfaces/comida-dto';
 import { MenuService } from '../../Services/menu.service';
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   selector: 'app-edit-menu',
-  imports: [ReactiveFormsModule,CurrencyPipe],
+  imports: [ReactiveFormsModule,NgFor,NgIf],
   templateUrl: './edit-menu.component.html',
   styleUrl: './edit-menu.component.css'
 })
@@ -23,8 +23,8 @@ export class EditMenuComponent {
   public diasSemana: string[] = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES'];
   public totalPrecio: number = 0;  // Total que se calcula a medida que se seleccionan comidas
   public todasComidas:ComidaDTO[]=[];
-
-  constructor(private fb:FormBuilder,private route: ActivatedRoute,private menuService:MenuService,private comidaService:ComidaService) {}
+  public showSaveButton: any;
+  constructor(private fb:FormBuilder,private route: ActivatedRoute,private menuService:MenuService,private comidaService:ComidaService,private router:Router) {}
 
 
   ngOnInit(){
@@ -33,6 +33,18 @@ export class EditMenuComponent {
       console.log(this.id);       
     });
     this.cargarMenu();        
+    this.menuForm = this.fb.group({
+      tipo: ['', Validators.required],  
+      entrada: ['', ], 
+      platoPrincipal: ['', Validators.required], 
+      postre: ['', ],  
+      bebida: ['', ],  
+      dia: ['', Validators.required],
+      precio:['',Validators.required]
+    });
+    this.menuForm.get('platoPrincipal')?.valueChanges.subscribe(() => {
+      this.showSaveButton = this.menuForm.get('platoPrincipal')?.valid;
+    });
   }
 
   cargarMenu():void{
@@ -65,12 +77,44 @@ export class EditMenuComponent {
       console.error("No cargo el menu");
       return
     }
-    const comidasMenuSet = new Set(this.menu.comidas);
-    console.log(comidasMenuSet+"hola")
-    console.log(comidasMenuSet.has(3));
+    const comidasMenuSet = new Set(this.menu.comidas);    
     this.comidas = this.todasComidas.filter(ca => comidasMenuSet.has(ca.id));
     
   }
+
+  onSubmit() {
+    if (this.menuForm.valid) {
+      if(!this.menu){
+        console.error("error al cargar menu");
+        return
+      }
+      
+
+      const comidas= [
+        this.menuForm.get('entrada')?.value,
+        this.menuForm.get('platoPrincipal')?.value,
+        this.menuForm.get('postre')?.value,
+        this.menuForm.get('bebida')?.value
+      ].filter(Boolean);
+
+      this.menu.dias = this.menuForm.get('dia')?.value;
+      this.menu.tipo = this.menuForm.get('tipo')?.value;
+      this.menu.comidas = comidas;
+      this.menu.precio = this.menuForm.get('precio')?.value;
+
+      // Enviar el menú al servicio para ser guardado
+      this.menuService.modificarMenu(this.menu).subscribe({
+        next: () => alert('Menú modificado con éxito'),
+        error: (err) => console.error('Error al modificar el menú:', err),
+      });
+    } else {
+      console.log("Formulario inválido");
+    }
+    this.router.navigate(['/']);
+  }
+
+
+
 
 
 }

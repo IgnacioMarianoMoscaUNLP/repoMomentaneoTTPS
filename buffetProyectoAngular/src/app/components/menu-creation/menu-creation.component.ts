@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComidaService } from '../../Services/comida.service';
 import { MenuService } from '../../Services/menu.service';
 import { CommonModule } from '@angular/common';  // Necesario para *ngFor
 import { ReactiveFormsModule } from '@angular/forms';  // Para formularios reactivos
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-creation',
@@ -13,13 +14,14 @@ import { ReactiveFormsModule } from '@angular/forms';  // Para formularios react
   styleUrls: ['./menu-creation.component.css']
 })
 export class MenuCreationComponent implements OnInit {
+
   menuForm!: FormGroup;  // Definición de formulario reactivo
   comidas: any[] = [];  // Lista de comidas obtenidas del servicio
   diasSemana: string[] = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES'];
   totalPrecio: number = 0;  // Total que se calcula a medida que se seleccionan comidas
   showSaveButton: any;
 
-  constructor(private fb: FormBuilder, private comidaService: ComidaService, private menuService: MenuService) {}
+  constructor(private fb: FormBuilder, private comidaService: ComidaService, private menuService: MenuService,private router:Router) {}
 
   ngOnInit(): void {
     // Inicializa el formulario con validaciones
@@ -41,7 +43,7 @@ export class MenuCreationComponent implements OnInit {
      this.menuForm.get('platoPrincipal')?.valueChanges.subscribe(() => {
       this.showSaveButton = this.menuForm.get('platoPrincipal')?.valid;
     });
-    
+        
   }
 
   // Enviar el formulario
@@ -67,5 +69,6 @@ export class MenuCreationComponent implements OnInit {
     } else {
       console.log("Formulario inválido");
     }
+    this.router.navigate(['/']);
   }
 }

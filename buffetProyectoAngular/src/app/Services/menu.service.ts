@@ -13,6 +13,10 @@ export class MenuService {
     return this.http.post<MenuDTO>(this.apiUrl, menu);
   }
 
+  modificarMenu(menu:MenuDTO):Observable<MenuDTO>{
+     return this.http.post<MenuDTO>(`${this.apiUrl}/${menu.idmenu}`, menu);
+  }
+
   getMenu(id:number):Observable<MenuDTO>{
     return this.http.get<MenuDTO>(`${this.apiUrl}/${id}`);
   }

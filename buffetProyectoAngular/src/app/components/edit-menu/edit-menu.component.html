@@ -1,1 +1,84 @@
-<p>hi</p>
+<div class="container">
+    <h2>Editar Menú</h2>
+  
+    <h3>Valores del Menu a Editar</h3>
+    <p><strong>Tipo:</strong>{{menu?.tipo}}</p>
+    <p><strong>Dia:</strong>{{menu?.dias}}</p>
+    <p><strong>Precio:</strong>{{menu?.tipo}}</p>
+    <p><strong>comidas:</strong><a *ngFor="let c of comidas">-{{c.nombre}}</a></p>
+    <div>
+
+
+    </div>
+    <h3>Necesita eligir "tipo", "Principal", "Dia" y "Precio" Para Enviar</h3>
+    <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+      <table>
+        <tr>
+          <th>Operaciones</th>
+          <th>Menú</th>
+          <th>Entrada</th>
+          <th>Plato Principal</th>
+          <th>Postre</th>
+          <th>Bebida</th>
+          <th>Día</th>
+        </tr>
+  
+        <tr>
+          <td>
+            <button type="submit" [disabled]="!menuForm.valid" *ngIf="showSaveButton">Guardar</button>
+          </td>
+          <td>
+            
+            <select formControlName="tipo" >
+              <option >
+                Vegano
+              </option>
+              <option >
+                No Vegano
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="entrada">
+              <option *ngFor="let comida of todasComidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="platoPrincipal" >
+              <option *ngFor="let comida of todasComidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="postre" >
+              <option *ngFor="let comida of todasComidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="bebida">
+              <option *ngFor="let comida of todasComidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="dia">
+              <option *ngFor="let dia of diasSemana" [value]="dia">
+                {{ dia }}
+              </option>
+            </select>
+          </td>
+        </tr>
+      </table>
+  
+      <div class="total">
+        <strong>Precio Total: <input formControlName="precio"></strong>
+      </div>
+    </form>
+  </div>
+  

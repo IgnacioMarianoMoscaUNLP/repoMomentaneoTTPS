@@ -22,7 +22,9 @@ export class MenuCardComponent {
     return this.loginservice.getUserRole()==="ADMIN";
   }
 
-
+  menuVale(){
+    return this.menu!=null;
+  }
   
 }
    
