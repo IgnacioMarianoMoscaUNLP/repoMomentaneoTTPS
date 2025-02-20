@@ -1,0 +1,8 @@
+<div class="menu-card">
+    <h2 class="menu-title">{{ menu?.tipo }}</h2>
+    <p class="menu-price"><strong>Precio:</strong> ${{ menu?.precio }}</p>
+    <p class="menu-foods"><strong>Comidas:</strong> 
+        <span *ngFor="let comida of comidas" class="food-item"> -{{ comida.nombre }}</span>
+    </p>    
+    <p class="menu-days"><strong>Día:</strong> {{ menu?.dias }}</p>
+</div>

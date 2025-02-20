@@ -1,0 +1,66 @@
+<div class="container">
+    <h2>Crear/Editar Menú</h2>
+  
+    <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+      <table>
+        <tr>
+          <th>Operaciones</th>
+          <th>Menú</th>
+          <th>Entrada</th>
+          <th>Plato Principal</th>
+          <th>Postre</th>
+          <th>Bebida</th>
+          <th>Día</th>
+        </tr>
+  
+        <tr>
+          <td>
+            <button type="submit" [disabled]="!menuForm.valid">Guardar</button>
+          </td>
+          <td>
+            <input formControlName="nombre" placeholder="Nombre Menú" />
+          </td>
+          <td>
+            <select formControlName="entrada" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+              <option *ngFor="let comida of comidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="platoPrincipal" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+              <option *ngFor="let comida of comidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="postre" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+              <option *ngFor="let comida of comidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="bebida" (change)="actualizarComidasSeleccionadas(); actualizarTotal()">
+              <option *ngFor="let comida of comidas" [value]="comida.id">
+                {{ comida.nombre }} ({{ comida.precio }})
+              </option>
+            </select>
+          </td>
+          <td>
+            <select formControlName="dia">
+              <option *ngFor="let dia of diasSemana" [value]="dia">
+                {{ dia }}
+              </option>
+            </select>
+          </td>
+        </tr>
+      </table>
+  
+      <div class="total">
+        <strong>Precio Total: {{ totalPrecio | currency }}</strong>
+      </div>
+    </form>
+  </div>
+  

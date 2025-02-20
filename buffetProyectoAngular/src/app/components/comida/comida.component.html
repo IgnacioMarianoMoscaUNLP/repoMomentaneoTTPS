@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="title">Crear Comida</h1>
+  
+    <mat-card class="form-card">
+      <form [formGroup]="comidaForm" (ngSubmit)="onSubmit()" class="horizontal-form">
+  
+        <!-- Nombre -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre de la comida" />
+          </mat-form-field>
+  
+          <!-- Precio -->
+          <mat-form-field appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="precio" placeholder="0.00" type="number" />
+          </mat-form-field>
+        </div>
+  
+        <!-- Botón de Registro -->
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="comidaForm.invalid">
+            Crear Comida
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  
