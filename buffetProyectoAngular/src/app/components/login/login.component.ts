@@ -29,7 +29,7 @@ export class LoginComponent {
 
         // Almacenar token y rol en localStorage
         localStorage.setItem('token', response.token);
-        localStorage.setItem('role', response.rol);
+        localStorage.setItem('role', response.role);
 
         // Redirigir a la página principal
         this.router.navigate(['/']);

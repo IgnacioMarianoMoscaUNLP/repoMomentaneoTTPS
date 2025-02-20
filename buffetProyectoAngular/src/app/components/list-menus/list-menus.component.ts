@@ -58,12 +58,13 @@ export class ListMenusComponent {
         comidas => {
           
           c.comidas = comidas;
-          this.lista.push(c);
+          
         },
         error => {
           console.error('Error al cargar las comidas veganas:', error);
-        } 
-      );     
+        }     
+      );  
+      this.lista.push(c);   
     }
   }
 
