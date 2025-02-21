@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47408e7d-bcd2-49a6-aced-10f234e3714b" name="Changes" comment="" />
+    <list default="true" id="47408e7d-bcd2-49a6-aced-10f234e3714b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buffetAplicacion/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buffetAplicacion/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buffetAplicacion/filter/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buffetAplicacion/filter/JWTAuthenticationFilter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +46,7 @@
     "Spring Boot.sApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Mariano/Documents/PrototipoJPAHibernate",
+    "last_opened_file_path": "H:/ProyectoTTPS/PrototipoJPAHibernate",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,6 +92,7 @@
       <workItem from="1740070590125" duration="86000" />
       <workItem from="1740070690988" duration="530000" />
       <workItem from="1740071452979" duration="6599000" />
+      <workItem from="1740151332743" duration="64000" />
     </task>
     <servers />
   </component>

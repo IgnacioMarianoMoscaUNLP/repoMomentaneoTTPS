@@ -1,5 +1,7 @@
 package buffetAplicacion.config;
 
+import buffetAplicacion.filter.JWTAuthenticationFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -16,5 +18,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE")  // Métodos HTTP permitidos
                 .allowedHeaders("*")  // Permite todos los encabezados
                 .allowCredentials(true);  // Permite el uso de credenciales (como cookies o tokens)
+    }
+    @Bean
+    public FilterRegistrationBean<JWTAuthenticationFilter> jwtAuthenticationFilter() {
+        FilterRegistrationBean<JWTAuthenticationFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new JWTAuthenticationFilter()); // Instancia del filtro
+        registrationBean.addUrlPatterns("/*"); // Aplica el filtro a todas las URLs
+        registrationBean.setOrder(1); // Define el orden del filtro
+        return registrationBean;
     }
 }

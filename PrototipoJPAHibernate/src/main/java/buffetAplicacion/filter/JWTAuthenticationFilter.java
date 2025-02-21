@@ -34,6 +34,8 @@ public class JWTAuthenticationFilter implements Filter {
         // El login del  usuarios es publico
         if ("/usuario/auth".equals(req.getRequestURI()) ||
                 "/usuario/new".equals(req.getRequestURI()) ||
+                "/menu/day".equals(req.getRequestURI()) ||
+                "/comida/id".equals(req.getRequestURI()) ||
                 HttpMethod.OPTIONS.matches(req.getMethod())) {
             System.out.println("valida el auth o new");
             chain.doFilter(request, response);
