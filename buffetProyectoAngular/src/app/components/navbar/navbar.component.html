@@ -2,10 +2,10 @@
 <nav>
   <button routerLinkActive="active" routerLink="/">Home</button>
   
-  <button *ngIf="!isLoggedIn()"  routerLink="login" >login</button>
-  <button *ngIf="!isLoggedIn()"  routerLink="register" >registro</button>
-  <button *ngIf="isLoggedIn() && isAdmin()"  routerLink="create">Create Menu</button>
-  <button *ngIf="isLoggedIn() && isAdmin()"  routerLink="list">List Menus</button>
-  <button *ngIf="isLoggedIn() && !isAdmin()"  routerLink="profile">Profile</button>
+  <button *ngIf="!isLoggedIn()"  routerLink="/login" >login</button>
+  <button *ngIf="!isLoggedIn()"  routerLink="/register" >registro</button>
+  <button *ngIf="isLoggedIn() && isAdmin()"  routerLink="/create">Create Menu</button>
+  <button *ngIf="isLoggedIn() && isAdmin()"  routerLink="/list">List Menus</button>
+  <button *ngIf="isLoggedIn() && !isAdmin()"  routerLink="/profile">Profile</button>
   <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
 </nav>
